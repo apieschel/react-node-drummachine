@@ -44,7 +44,7 @@ class App extends Component {
     this.state = {
       ac: ac,
       recorderNode: recorderNode,
-      //rec: rec,
+      rec: rec,
       data: DATA,
       play: false,
 	    loop: false,
@@ -73,6 +73,7 @@ class App extends Component {
     let intervalId = setInterval(this.timer, 120);
     // store intervalId in the state so it can be accessed later:
     this.setState({intervalId: intervalId});
+    console.log(this.state);
   }
 	
   componentWillUnmount() {
