@@ -208,18 +208,17 @@ class App extends Component {
   
   record() {
     let rec = this.state.rec;
-    console.log(rec);
     rec.record();
+    console.log(rec);
     this.setState({ rec: rec });
     document.getElementById("record").className = "hidden";
     document.getElementById("stop").className = "";  
   }
   
   stopRecord() {
-    console.log(this.state);
     let rec = this.state.rec;
-    console.log(rec);
     rec.stop();
+    console.log(rec);
     this.setState({ rec: rec });
     document.getElementById("stop").className = "hidden";
     document.getElementById("wav").className = "";
@@ -228,8 +227,6 @@ class App extends Component {
   exportWav() {
     console.log("test");
     let rec = this.state.rec;
-    console.log(rec);
-    
     rec.exportWAV(function(blob) {
       const audio = document.createElement("audio");
       const url = URL.createObjectURL(blob);
@@ -243,6 +240,8 @@ class App extends Component {
       document.getElementById("wav").className = "hidden";
       document.getElementById("record").className = "";
     });
+    
+    console.log(rec);
   }
   
   timer() {
