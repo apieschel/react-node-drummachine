@@ -208,16 +208,20 @@ class App extends Component {
   record() {
     let rec = this.state.rec;
     console.log(rec);
-    rec.start();
+    rec.record();
+    this.setState({ rec: rec });
     document.getElementById("record").className = "hidden";
     document.getElementById("stop").className = "";  
   }
   
   stopRecord() {
-    let record = this.state.rec;
-    record.stop();
+    console.log(this.state);
+    //let rec = this.state.rec;
+    //console.log(rec);
+    //rec.stop();
+    //this.setState({ rec: rec });
     document.getElementById("stop").className = "hidden";
-    document.getElementById("wav").className = "";
+    //document.getElementById("wav").className = "";
   }
   
   timer() {
