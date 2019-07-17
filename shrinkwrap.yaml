@@ -1,6 +1,6 @@
 dependencies:
   express: 4.16.4
-  recorder-js: 1.0.7
+  recorderjs: 1.0.1
 devDependencies:
   concurrently: 4.1.1
 packages:
@@ -351,10 +351,6 @@ packages:
     dev: false
     resolution:
       integrity: sha1-Yzwsg+PaQqUC9SRmAiSA9CCCYd4=
-  /inline-worker/1.1.0:
-    dev: false
-    resolution:
-      integrity: sha1-VelvVJFaZCsAhyotqm/oMrQkyY0=
   /invert-kv/2.0.0:
     dev: true
     engines:
@@ -670,12 +666,13 @@ packages:
       node: '>=6'
     resolution:
       integrity: sha1-ljYlN48+HE1IyFhytabsfV0JMjc=
-  /recorder-js/1.0.7:
-    dependencies:
-      inline-worker: 1.1.0
+  /recorderjs/1.0.1:
     dev: false
+    peerDependencies:
+      browserify: ^5.11.1
+      workerify: ^0.3.0
     resolution:
-      integrity: sha1-VBbwXIY9lcS260smWK1sG6+fVnc=
+      integrity: sha1-+CEaD5C9zc+i9DGll7bLlKG5NXE=
   /require-directory/2.1.1:
     dev: true
     engines:
@@ -966,4 +963,4 @@ shrinkwrapVersion: 3
 specifiers:
   concurrently: ^4.1.0
   express: ^4.16.4
-  recorder-js: ^1.0.7
+  recorderjs: ^1.0.1

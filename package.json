@@ -16,7 +16,7 @@
   },
   "dependencies": {
     "express": "^4.16.4",
-    "recorder-js": "^1.0.7"
+    "recorderjs": "^1.0.1"
   },
   "engines": {
     "node": "8.x"

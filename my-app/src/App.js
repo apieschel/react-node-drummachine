@@ -3,7 +3,7 @@
 
 import React, { Component } from 'react';
 import './App.css';
-import Recorder from 'recorder-js';
+import Recorder from 'recorderjs';
 
 class App extends Component {
     constructor(props) {
@@ -208,7 +208,7 @@ class App extends Component {
   record() {
     let rec = this.state.rec;
     console.log(rec);
-    rec.record();
+    //rec.record();
     this.setState({ rec: rec });
     document.getElementById("record").className = "hidden";
     document.getElementById("stop").className = "";  
