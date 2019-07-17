@@ -225,7 +225,6 @@ class App extends Component {
   }
   
   exportWav() {
-    console.log("test");
     let rec = this.state.rec;
     rec.exportWAV(function(blob) {
       const audio = document.createElement("audio");
@@ -275,11 +274,9 @@ class App extends Component {
           gain.connect(state.recorderNode);
           gain.connect(state.ac.destination);
           playSound.start(0);
-
           clone.remove();
         });     
       }
-      
       request.send();
     });
   }
