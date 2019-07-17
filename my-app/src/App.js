@@ -67,6 +67,7 @@ class App extends Component {
     this.timer = this.timer.bind(this);
     this.record = this.record.bind(this);
     this.stopRecord = this.stopRecord.bind(this);
+    this.exportWav = this.exportWav.bind(this);
   }
 	
   componentDidMount() {
@@ -208,7 +209,7 @@ class App extends Component {
   record() {
     let rec = this.state.rec;
     console.log(rec);
-    //rec.record();
+    rec.record();
     this.setState({ rec: rec });
     document.getElementById("record").className = "hidden";
     document.getElementById("stop").className = "";  
@@ -216,12 +217,29 @@ class App extends Component {
   
   stopRecord() {
     console.log(this.state);
-    //let rec = this.state.rec;
-    //console.log(rec);
-    //rec.stop();
-    //this.setState({ rec: rec });
+    let rec = this.state.rec;
+    console.log(rec);
+    rec.stop();
+    this.setState({ rec: rec });
     document.getElementById("stop").className = "hidden";
-    //document.getElementById("wav").className = "";
+    document.getElementById("wav").className = "";
+  }
+  
+  exportWav() {
+    let rec = this.state.rec;
+    rec.exportWAV(function(blob) {
+      const audio = document.createElement("audio");
+      const url = URL.createObjectURL(blob);
+      console.log(url);
+      audio.src = url;
+      audio.controls = "true";
+      const flex = document.createElement("div");
+      flex.className = "flex-container";
+      flex.append(audio);
+      document.querySelector(".recordContainer").append(flex);    
+      document.getElementById("wav").className = "hidden";
+      document.getElementById("record").className = "";
+    });
   }
   
   timer() {
@@ -273,8 +291,13 @@ class App extends Component {
         <div className="count-container">
             {this.drawButton()}
         </div>
-        <div id="record" onClick={this.record}>Record</div>
-        <div id="stop" onClick={this.stopRecord}>Stop</div>
+        <div className="recordContainer">
+          <div className="flex-container">
+            <div id="record" onClick={this.record}>Record</div>
+            <div id="stop" className="hidden" onClick={this.stopRecord}>Stop</div>
+            <div id="wav" className="hidden" onClick={this.exportWav}>Export Wav</div>
+          </div>
+        </div>
       </div>
     );
   }

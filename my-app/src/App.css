@@ -52,15 +52,19 @@ body {
   cursor: pointer;
   font-size: 24px;
   font-weight: bold;
-  margin-top: 100px;
   padding: 5px 20px;
   width: 100px;
 }
 
 #record {
   background: red;
+  margin-top: 100px;
 }
 
 #wav {
   background: #F15A2B;
+}
+
+.hidden {
+  display: none;
 }
