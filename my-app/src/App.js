@@ -65,6 +65,8 @@ class App extends Component {
     this.drawTracks = this.drawTracks.bind(this);
     this.drawButton = this.drawButton.bind(this);
     this.timer = this.timer.bind(this);
+    this.record = this.record.bind(this);
+    this.stopRecord = this.stopRecord.bind(this);
   }
 	
   componentDidMount() {
@@ -203,6 +205,21 @@ class App extends Component {
     return <div className="count" style={{left: position}}></div>;  
   }
   
+  record() {
+    let rec = this.state.rec;
+    console.log(rec);
+    rec.start();
+    document.getElementById("record").className = "hidden";
+    document.getElementById("stop").className = "";  
+  }
+  
+  stopRecord() {
+    let record = this.state.rec;
+    record.stop();
+    document.getElementById("stop").className = "hidden";
+    document.getElementById("wav").className = "";
+  }
+  
   timer() {
     let data = this.state.data;
     let state = this.state;
@@ -251,7 +268,9 @@ class App extends Component {
         </div> 
         <div className="count-container">
             {this.drawButton()}
-        </div>  
+        </div>
+        <div id="record" onClick={this.record}>Record</div>
+        <div id="stop" onClick={this.stopRecord}>Stop</div>
       </div>
     );
   }
