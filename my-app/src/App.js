@@ -75,7 +75,7 @@ class App extends Component {
     let intervalId = setInterval(this.timer, 120);
     // store intervalId in the state so it can be accessed later:
     this.setState({intervalId: intervalId});
-    console.log(this.state);
+    console.log(this.state.rec);
   }
 	
   componentWillUnmount() {
