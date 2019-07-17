@@ -226,7 +226,10 @@ class App extends Component {
   }
   
   exportWav() {
+    console.log("test");
     let rec = this.state.rec;
+    console.log(rec);
+    
     rec.exportWAV(function(blob) {
       const audio = document.createElement("audio");
       const url = URL.createObjectURL(blob);
