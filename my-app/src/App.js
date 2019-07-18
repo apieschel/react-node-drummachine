@@ -3,7 +3,7 @@
 
 import React, { Component } from 'react';
 import './App.css';
-import Recorder from 'recorderjs';
+import Recorder from './recorder.js';
 
 class App extends Component {
     constructor(props) {
