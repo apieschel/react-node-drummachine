@@ -3,11 +3,6 @@
 
 import React, { Component } from 'react';
 import './App.css';
-import Recorder from 'recorderjs';
-
-const ac = new AudioContext();
-const recorderNode = ac.createGain();
-const rec = new Recorder(recorderNode);
 
 class App extends Component {
     constructor(props) {

@@ -3,6 +3,11 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
+import Recorder from 'recorderjs';
+
+const ac = new AudioContext();
+const recorderNode = ac.createGain();
+const rec = new Recorder(recorderNode, [{workerPath: 'my-app/js/recorderjs/recorderWorker.js'}]);
 
 ReactDOM.render(<App />, document.getElementById('root'));
 
