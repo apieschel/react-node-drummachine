@@ -1,6 +1,5 @@
 dependencies:
   express: 4.16.4
-  recorderjs: 1.0.1
 devDependencies:
   concurrently: 4.1.1
 packages:
@@ -666,13 +665,6 @@ packages:
       node: '>=6'
     resolution:
       integrity: sha1-ljYlN48+HE1IyFhytabsfV0JMjc=
-  /recorderjs/1.0.1:
-    dev: false
-    peerDependencies:
-      browserify: ^5.11.1
-      workerify: ^0.3.0
-    resolution:
-      integrity: sha1-+CEaD5C9zc+i9DGll7bLlKG5NXE=
   /require-directory/2.1.1:
     dev: true
     engines:
@@ -963,4 +955,3 @@ shrinkwrapVersion: 3
 specifiers:
   concurrently: ^4.1.0
   express: ^4.16.4
-  recorderjs: ^1.0.1
