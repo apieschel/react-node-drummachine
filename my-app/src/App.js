@@ -74,6 +74,7 @@ class App extends Component {
     
     const rec = new Recorder(this.state.recorderNode, [{workerPath: 'js/recorderjs/recorderWorker.js'}]);
     console.log(rec);
+    console.log(typeof(rec));
     const intervalId = setInterval(this.timer, 120);
     
     // store intervalId in the state so it can be accessed later:
