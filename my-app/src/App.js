@@ -3,14 +3,14 @@
 
 import React, { Component } from 'react';
 import './App.css';
+import Recorder from 'recorderjs';
 
 class App extends Component {
     constructor(props) {
     super(props);
       
-    //const ac = new AudioContext();
-    //const recorderNode = ac.createGain();
-    //const rec = new Recorder(recorderNode);
+    const ac = new AudioContext();
+    const recorderNode = ac.createGain();
     
     const kick = new Audio('https://cdn.glitch.com/17f54245-b142-4cf8-a81b-65e0b36f6b8f%2FMT52_bassdrum.wav?1551990664247');
     const snare = new Audio('https://cdn.glitch.com/17f54245-b142-4cf8-a81b-65e0b36f6b8f%2FMT52_snare.wav?1551990663373');
@@ -43,7 +43,7 @@ class App extends Component {
     this.state = {
       ac: ac,
       recorderNode: recorderNode,
-      rec: rec,
+      rec: null,
       data: DATA,
       play: false,
 	    loop: false,
@@ -72,10 +72,12 @@ class App extends Component {
   componentDidMount() {
     document.addEventListener('keydown', this.handleKeyPress);
     
-    let intervalId = setInterval(this.timer, 120);
+    const rec = new Recorder(this.state.recorderNode, [{workerPath: 'js/recorderjs/recorderWorker.js'}]);
+    console.log(rec);
+    const intervalId = setInterval(this.timer, 120);
+    
     // store intervalId in the state so it can be accessed later:
-    this.setState({intervalId: intervalId});
-    console.log(this.state.rec);
+    this.setState({intervalId: intervalId, rec: rec});
   }
 	
   componentWillUnmount() {
@@ -167,11 +169,7 @@ class App extends Component {
     isActive ? e.target.className = "grey" : e.target.className = "red";
     
     this.setState({ data: data });
-    
-    ac.resume().then(() => {
-      console.log('Playback resumed successfully');
-      console.log(ac);
-    });
+    console.log(data.tracks);
   }
   
   drawTracks() {
@@ -210,7 +208,7 @@ class App extends Component {
   }
   
   record() {
-    //let rec = this.state.rec;
+    let rec = this.state.rec;
     rec.record();
     console.log(rec);
     this.setState({ rec: rec });
@@ -219,7 +217,7 @@ class App extends Component {
   }
   
   stopRecord() {
-    //let rec = this.state.rec;
+    let rec = this.state.rec;
     rec.stop();
     console.log(rec);
     this.setState({ rec: rec });
@@ -228,7 +226,7 @@ class App extends Component {
   }
   
   exportWav() {
-    //let rec = this.state.rec;
+    let rec = this.state.rec;
     rec.exportWAV(function(blob) {
       const audio = document.createElement("audio");
       const url = URL.createObjectURL(blob);
@@ -267,15 +265,15 @@ class App extends Component {
       request.open('GET', track.playSound.src, true);
       request.responseType = 'arraybuffer';
       request.onload = function() {
-        ac.decodeAudioData(request.response, function(buffer) {
+        state.ac.decodeAudioData(request.response, function(buffer) {
           buffer = buffer;
         
-          const gain = ac.createGain();
-          const playSound = ac.createBufferSource();
+          const gain = state.ac.createGain();
+          const playSound = state.ac.createBufferSource();
           playSound.buffer = buffer;
           playSound.connect(gain);
-          gain.connect(recorderNode);
-          gain.connect(ac.destination);
+          gain.connect(state.recorderNode);
+          gain.connect(state.ac.destination);
           playSound.start(0);
           clone.remove();
         });     
