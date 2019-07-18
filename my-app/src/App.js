@@ -242,6 +242,7 @@ class App extends Component {
       document.getElementById("record").className = "";
     });
     
+    this.setState({rec: rec});
     console.log(rec);
   }
   

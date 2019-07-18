@@ -1,3 +1,6 @@
+/* Inline Worker by @mohayonao
+https://github.com/mohayonao/inline-worker */
+
 var WORKER_ENABLED = !!(global === global.window && global.URL && global.Blob && global.Worker);
 
 function InlineWorker(func, self) {
