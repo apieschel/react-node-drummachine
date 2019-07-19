@@ -203,7 +203,7 @@ class App extends Component {
   drawButton() {
     let position = 0;
     if(this.state.currentCount !== 0) {
-      position = (70 * this.state.currentCount);
+      position = (39 * this.state.currentCount);
     }
     return <div className="count" style={{left: position}}></div>;  
   }
@@ -287,18 +287,18 @@ class App extends Component {
   render() {
     return (
       <div id="display">
-        <div className="pad-container col-12">
-	  				{this.drawTracks()}
-        </div> 
-        <div className="count-container">
-            {this.drawButton()}
-        </div>
         <div className="recordContainer">
           <div className="flex-container">
             <div id="record" onClick={this.record}>Record</div>
             <div id="stop" className="hidden" onClick={this.stopRecord}>Stop</div>
             <div id="wav" className="hidden" onClick={this.exportWav}>Export Wav</div>
           </div>
+        </div>
+        <div className="pad-container col-12">
+	  				{this.drawTracks()}
+        </div> 
+        <div className="count-container">
+            {this.drawButton()}
         </div>
       </div>
     );
