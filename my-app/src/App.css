@@ -1,12 +1,12 @@
 body, html {
   background: black;
+  color: white;
   font-family: Arial;
   height: 100%;
   margin: 0;
 }
 
 h1 {
-  color: white;
   font-size: 30px;
   font-weight: normal;
   margin-top: 80px;
@@ -15,7 +15,6 @@ h1 {
 }
 
 h2 {
-  color: white;
   font-size: 24px;
   font-weight: normal;
   text-align: center;
