@@ -167,7 +167,7 @@ class App extends Component {
     isActive ? data.tracks[track].steps[step] = false : data.tracks[track].steps[step] = true;
     
     // toggle the background color of the step to indicate on or off
-    isActive ? e.target.className = "grey" : e.target.className = "red";
+    isActive ? e.target.className = "white" : e.target.className = "green";
     
     this.setState({ data: data });
     console.log(data.tracks);
@@ -179,22 +179,22 @@ class App extends Component {
     for(let i = 0; i < sounds.length; i++) {
       tracks.push(
       <div key={i} className={sounds[i].name}>
-        <div id={i + "_0"} className="grey" onClick={this.handleClick}></div>
-        <div id={i + "_1"} className="grey" onClick={this.handleClick}></div>
-        <div id={i + "_2"} className="grey" onClick={this.handleClick}></div>
-        <div id={i + "_3"} className="grey" onClick={this.handleClick}></div>
-        <div id={i + "_4"} className="grey" onClick={this.handleClick}></div>
-        <div id={i + "_5"} className="grey" onClick={this.handleClick}></div>
-        <div id={i + "_6"} className="grey" onClick={this.handleClick}></div>
-        <div id={i + "_7"} className="grey" onClick={this.handleClick}></div>
-        <div id={i + "_8"} className="grey" onClick={this.handleClick}></div>
-        <div id={i + "_9"} className="grey" onClick={this.handleClick}></div>
-        <div id={i + "_10"} className="grey" onClick={this.handleClick}></div>
-        <div id={i + "_11"} className="grey" onClick={this.handleClick}></div>
-        <div id={i + "_12"} className="grey" onClick={this.handleClick}></div>
-        <div id={i + "_13"} className="grey" onClick={this.handleClick}></div>
-        <div id={i + "_14"} className="grey" onClick={this.handleClick}></div>
-        <div id={i + "_15"} className="grey" onClick={this.handleClick}></div>
+        <div id={i + "_0"} className="white" onClick={this.handleClick}></div>
+        <div id={i + "_1"} className="white" onClick={this.handleClick}></div>
+        <div id={i + "_2"} className="white" onClick={this.handleClick}></div>
+        <div id={i + "_3"} className="white" onClick={this.handleClick}></div>
+        <div id={i + "_4"} className="white" onClick={this.handleClick}></div>
+        <div id={i + "_5"} className="white" onClick={this.handleClick}></div>
+        <div id={i + "_6"} className="white" onClick={this.handleClick}></div>
+        <div id={i + "_7"} className="white" onClick={this.handleClick}></div>
+        <div id={i + "_8"} className="white" onClick={this.handleClick}></div>
+        <div id={i + "_9"} className="white" onClick={this.handleClick}></div>
+        <div id={i + "_10"} className="white" onClick={this.handleClick}></div>
+        <div id={i + "_11"} className="white" onClick={this.handleClick}></div>
+        <div id={i + "_12"} className="white" onClick={this.handleClick}></div>
+        <div id={i + "_13"} className="white" onClick={this.handleClick}></div>
+        <div id={i + "_14"} className="white" onClick={this.handleClick}></div>
+        <div id={i + "_15"} className="white" onClick={this.handleClick}></div>
       </div>);
     }
     return tracks;
@@ -287,6 +287,8 @@ class App extends Component {
   render() {
     return (
       <div id="display">
+        <h1>Javascript Drum Machine</h1>
+        <h2> Set tempo with external MIDI device, upload your own samples, and record your own drum loops in the web browser.</h2>
         <div className="recordContainer">
           <div className="flex-container">
             <div id="record" onClick={this.record}>Record</div>
@@ -304,18 +306,5 @@ class App extends Component {
     );
   }
 }
-
-/*
-document.onkeypress = function (e) {
-    e = e || window.event;
-	if(document.getElementById(e.key.toUpperCase())) {
-		for (let i = 0; i < document.querySelectorAll(".drum-pad").length; i++) {
-			if(document.querySelectorAll(".drum-pad")[i].innerText === e.key.toUpperCase()) {
-				document.querySelectorAll(".drum-pad")[i].firstChild.play();
-			}
-		}
-	}
-};
-*/
 
 export default App;

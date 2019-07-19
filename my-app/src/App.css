@@ -1,5 +1,42 @@
-body {
-  background: black;  
+body, html {
+  background: black;
+  font-family: Arial;
+  height: 100%;
+  margin: 0;
+}
+
+h1 {
+  color: white;
+  font-size: 30px;
+  font-weight: normal;
+  margin-top: 80px;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+h2 {
+  color: white;
+  font-size: 22px;
+  font-weight: normal;
+  text-align: center;
+}
+
+a, a:visited {
+  color: skyblue;
+}
+
+input, select {
+  border-radius: 2px;
+  border: 1px solid grey;
+  box-sizing: border-box;
+  cursor: pointer;
+  font-size: 20px;
+  height: 50px;
+  width: 290px;
+}
+
+select {
+  padding: 10px;
 }
 
 #display {
@@ -19,8 +56,8 @@ body {
   width: 26px; 
 }
 
-.pad-container .red {
-  background: red;
+.pad-container .green {
+  background: #00BA8C;
 }
 
 .count-container {
@@ -53,24 +90,20 @@ body {
   left: 70px
 }
 
-button {
-  box-sizing: border-box;
-  font-size: 24px;
-  height: 50px;
-  margin-right: 20px;
-  width: 270px;
-}
-
 #record, #stop, #wav {
   background: darkred;
   border: 1px solid darkred;
   border-radius: 2px;
+  box-sizing: border-box;
   color: white;
   cursor: pointer;
   font-size: 24px;
   font-weight: bold;
+  height: 50px;
   padding: 5px 20px;
-  width: 2
+  text-align: center;
+  text-transform: uppercase;
+  width: 270px;
 }
 
 #record {
