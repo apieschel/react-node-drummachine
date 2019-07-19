@@ -340,7 +340,7 @@ class App extends Component {
           <div className="container">
             <div className="recordContainer">
               <div className="flex-container">
-                <button id="record" onClick={this.record}>Record</button>
+                <button id="record" onClick={this.record}>RECORD</button>
                 <button id="stop" className="hidden" onClick={this.stopRecord}>Stop</button>
                 <button id="wav" className="hidden" onClick={this.exportWav}>Export Wav</button>
                 <button id="midi">MIDI OFF</button>
