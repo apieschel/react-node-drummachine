@@ -289,19 +289,72 @@ class App extends Component {
       <div id="display">
         <h1>Javascript Drum Machine</h1>
         <h2> Set tempo with external MIDI device, upload your own samples, and record your own drum loops in the web browser.</h2>
-        <div className="recordContainer">
-          <div className="flex-container">
-            <div id="record" onClick={this.record}>Record</div>
-            <div id="stop" className="hidden" onClick={this.stopRecord}>Stop</div>
-            <div id="wav" className="hidden" onClick={this.exportWav}>Export Wav</div>
+        
+        <div class="flex-container outer">
+          <div className="view">    
+            <form enctype="multipart/form-data" method="POST" action="/api/fileanalyse" id="upload">
+              <div className="flex-container">
+                <input id="inputfield" type="file" className="upfile" multiple required></input>
+                <input id="button" type="submit" value="UPLOAD"></input>
+              </div>
+            </form>
+            <form method="GET" action="/music/directory" id="currentFiles" className="hidden">
+              <div className="flex-container" id="wavContainer">
+                <input id="getFiles" type="submit" value="LOAD .WAV FILES"></input>
+              </div>
+            </form>
+            <form action="/music/delete" id="clearDirectory" className="hidden">
+              <div className="flex-container">
+                <input type="submit" value="CLEAR DIRECTORY" id="clear"></input>
+              </div>
+            </form>
+
+            <div className="instructions">
+              <h3>Instructions</h3>
+              <ul>
+                <li><strong><u>DRUM MACHINE</u></strong>: Click on the white squares to play different sounds on the default drum machine.
+                <a href="http://drum-machine.maryrosecook.com/" target="blank">Based on this drum machine by Mary Rose Cook.</a></li>
+                <li><strong><u>RECORD</u></strong>: Click "RECORD" to start recording your drum loop. 
+                Click again to stop recording. Then click again to turn your drum loop 
+                into an HTML audio element that you can download as a .wav file (click the three dots on the right side of the audio element, then click "Download").</li>
+                <li><strong><u>CLEAR TRACKS</u></strong>: Press "C" on your keyboard to clear the tracks.</li>
+                <li><strong><u>UPLOAD</u></strong>: You can upload your own sample packs to play with this drum machine.
+                Click "Choose Files." Hold "Shift" and click to select a group of audio files to upload from your computer, 
+                or hold "Ctrl" and click to select multiple files one by one. For now, only .wav files are accepted.
+                Click "Upload" once you've selected the files you want. A directory will be created on this server based on your IP address.
+                This directory will be deleted periodically in order to stay within storage limits.<strong> Please wait 2 minutes between uploads to ensure files are properly indexed!</strong></li>     
+                <li><strong><u>LOAD .WAV FILES</u></strong>: Use the dropdown to choose from different sample packs you have uploaded.
+                Then, click "LOAD .WAV FILES" to load your samples into the drum machine. If you want to go back to the default drum machine (Casio SA-10 Samples),
+                just refresh the page.</li>
+                <li><strong><u>CLEAR DIRECTORY</u></strong>: This will delete your personal directory along with all of the files you have uploaded.</li>
+                <li><strong><u>MIDI</u></strong>: Web browsers aren't great at keeping accurate time. If you want a more accurate BPM, 
+                then you can hook up an external sampler or drum machine to your computer (via MIDI interface) to keep time. 
+                Tell the drum machine to play 16 straight sixteenth notes, 
+                and this machine in the browser will update its count every time your external 
+                drum machine plays a note. Click the "MIDI" button, and try it out! 
+                While MIDI is off, the browser will do its best to keep time on its own. </li>
+              </ul>
+            </div>
           </div>
-        </div>
-        <div className="pad-container col-12">
-	  				{this.drawTracks()}
-        </div> 
-        <div className="count-container">
-            {this.drawButton()}
-        </div>
+
+          <div className="container">
+            <div className="recordContainer">
+              <div className="flex-container">
+                <div id="record" onClick={this.record}>Record</div>
+                <div id="stop" className="hidden" onClick={this.stopRecord}>Stop</div>
+                <div id="wav" className="hidden" onClick={this.exportWav}>Export Wav</div>
+              </div>
+            </div>
+
+            <div className="pad-container col-12">
+                {this.drawTracks()}
+            </div>
+
+            <div className="count-container">
+                {this.drawButton()}
+            </div>
+          </div>
+        </div>  
       </div>
     );
   }

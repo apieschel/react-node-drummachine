@@ -1,5 +1,6 @@
 body, html {
   background: black;
+  color: white;
   font-family: Arial;
   height: 100%;
   margin: 0;
@@ -16,7 +17,7 @@ h1 {
 
 h2 {
   color: white;
-  font-size: 22px;
+  font-size: 24px;
   font-weight: normal;
   text-align: center;
 }
@@ -39,9 +40,12 @@ select {
   padding: 10px;
 }
 
-#display {
-  width: 90%; 
-  margin: 0 auto;
+.view {
+  margin-right: 50px;
+}
+
+.view form {
+  margin-bottom: 20px;
 }
 
 .pad-container div {
