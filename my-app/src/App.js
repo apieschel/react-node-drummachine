@@ -55,12 +55,7 @@ class App extends Component {
       currentCount: 10
     }
     
-    this.clickPlay = this.clickPlay.bind(this);
-	  this.handleKeyPress = this.handleKeyPress.bind(this);
 	  this.handleClick = this.handleClick.bind(this);
-    this.handleBpmChange = this.handleBpmChange.bind(this);
-    this.handleStartStop = this.handleStartStop.bind(this);
-    this.playClick = this.playClick.bind(this);
     this.drawTracks = this.drawTracks.bind(this);
     this.drawButton = this.drawButton.bind(this);
     this.timer = this.timer.bind(this);
@@ -73,8 +68,6 @@ class App extends Component {
     document.addEventListener('keydown', this.handleKeyPress);
     
     const rec = new Recorder(this.state.recorderNode, [{workerPath: 'js/recorderjs/recorderWorker.js'}]);
-    console.log(rec);
-    console.log(typeof(rec));
     const intervalId = setInterval(this.timer, 120);
     
     // store intervalId in the state so it can be accessed later:
@@ -86,75 +79,6 @@ class App extends Component {
     
     // use intervalId from the state to clear the interval
     clearInterval(this.state.intervalId);
-  }
-    
-  handleStartStop(e) {
-    if(this.state.playing) {
-    // Stop the timer
-    clearInterval(this.timer);
-    this.setState({
-      playing: false
-    });
-    } else {
-      // Start a timer with the current BPM
-      this.timer = setInterval(this.playClick, (60 / this.state.bpm) * 1000);
-      this.setState({
-        count: 0,
-        playing: true
-        // Play a click "immediately" (after setState finishes)
-      }, this.playClick);
-    }
-  }
-  
-  playClick() {
-    const count = this.state.count; 
-    const beatsPerMeasure = this.state.beatsPerMeasure;
-
-    // The first beat will have a different sound than the others
-    if(count % beatsPerMeasure === 0) {
-      this.kick.play();
-    } else {
-      this.snare.play();
-    }
-
-    // Keep track of which beat we're on
-    this.setState(state => ({
-      count: (state.count + 1) % state.beatsPerMeasure
-    }));
-  }
-	
-  handleKeyPress(e) {
-    if(document.getElementById(e.key.toUpperCase())) {
-      document.getElementById(e.key.toUpperCase()).play();
-      //document.getElementById(e.key.toUpperCase()).parentElement.style.background = "green";
-      document.getElementById("display").firstChild.innerText = document.getElementById(e.key.toUpperCase()).parentElement.id;
-    }
-  }
-  
-  handleBpmChange(e) {
-    const bpm = e.target.value;
-    if(this.state.playing) {
-      // Stop the old timer and start a new one
-      clearInterval(this.timer);
-      this.timer = setInterval(this.playClick, (60 / bpm) * 1000);
-
-      // Set the new BPM, and reset the beat counter
-      this.setState({
-        count: 0,
-        bpm: bpm
-      });
-    } else {
-      // Otherwise just update the BPM
-      this.setState({ bpm: bpm });
-    }
-  }
-  
-  clickPlay(event) {
-    this.setState({
-      play: true
-    });
-    event.target.firstChild.play();
-    document.getElementById("display").firstChild.innerText = event.target.id;
   }
   
   handleClick(e) {
