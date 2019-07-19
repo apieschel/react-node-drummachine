@@ -290,9 +290,9 @@ class App extends Component {
         <h1>Javascript Drum Machine</h1>
         <h2> Set tempo with external MIDI device, upload your own samples, and record your own drum loops in the web browser.</h2>
         
-        <div class="flex-container outer">
+        <div className="flex-container outer">
           <div className="view">    
-            <form enctype="multipart/form-data" method="POST" action="/api/fileanalyse" id="upload">
+            <form encType="multipart/form-data" method="POST" action="/api/fileanalyse" id="upload">
               <div className="flex-container">
                 <input id="inputfield" type="file" className="upfile" multiple required></input>
                 <input id="button" type="submit" value="UPLOAD"></input>
@@ -340,9 +340,10 @@ class App extends Component {
           <div className="container">
             <div className="recordContainer">
               <div className="flex-container">
-                <div id="record" onClick={this.record}>Record</div>
-                <div id="stop" className="hidden" onClick={this.stopRecord}>Stop</div>
-                <div id="wav" className="hidden" onClick={this.exportWav}>Export Wav</div>
+                <button id="record" onClick={this.record}>Record</button>
+                <button id="stop" className="hidden" onClick={this.stopRecord}>Stop</button>
+                <button id="wav" className="hidden" onClick={this.exportWav}>Export Wav</button>
+                <button id="midi">MIDI OFF</button>
               </div>
             </div>
 
