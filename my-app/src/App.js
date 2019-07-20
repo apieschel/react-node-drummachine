@@ -100,10 +100,19 @@ class App extends Component {
   
   handleKeyPress(e) {
     e = e || window.event;
-    console.log(e);
     let data = this.state.data;
+    
+    // If user presses "C", then clear the tracks;
     if(e.keyCode === 67) {
-      console.log(e.keyCode);
+      let tracks = document.querySelector(".pad-container").children;
+      console.log(tracks.length);
+      for(let i = 0; i < tracks.length; i++) {
+        let steps = tracks.children;
+        for(let j = 0; j < steps.length; j++) {
+          
+        }
+      }
+      
       data.tracks.forEach(function(track, row) {
         track.steps.forEach(function(on, column) {
             track.steps[column] = false;    
@@ -111,7 +120,6 @@ class App extends Component {
       });
     }
     this.setState({data: data});
-    this.drawTracks();
   }
   
   drawTracks() {
