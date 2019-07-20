@@ -95,7 +95,6 @@ class App extends Component {
     isActive ? e.target.className = "white" : e.target.className = "green";
     
     this.setState({ data: data });
-    console.log(data.tracks);
   }
   
   handleKeyPress(e) {
@@ -105,11 +104,10 @@ class App extends Component {
     // If user presses "C", then clear the tracks;
     if(e.keyCode === 67) {
       let tracks = document.querySelector(".pad-container").children;
-      console.log(tracks.length);
       for(let i = 0; i < tracks.length; i++) {
-        let steps = tracks.children;
+        let steps = tracks[i].children;
         for(let j = 0; j < steps.length; j++) {
-          
+          steps[j].className = "white";
         }
       }
       
@@ -160,7 +158,6 @@ class App extends Component {
   record() {
     let rec = this.state.rec;
     rec.record();
-    console.log(rec);
     this.setState({ rec: rec });
     document.getElementById("record").className = "hidden";
     document.getElementById("stop").className = "";  
@@ -169,7 +166,6 @@ class App extends Component {
   stopRecord() {
     let rec = this.state.rec;
     rec.stop();
-    console.log(rec);
     this.setState({ rec: rec });
     document.getElementById("stop").className = "hidden";
     document.getElementById("wav").className = "";
@@ -180,7 +176,6 @@ class App extends Component {
     rec.exportWAV(function(blob) {
       const audio = document.createElement("audio");
       const url = URL.createObjectURL(blob);
-      console.log(url);
       audio.src = url;
       audio.controls = "true";
       const flex = document.createElement("div");
@@ -192,7 +187,6 @@ class App extends Component {
     });
     
     this.setState({rec: rec});
-    console.log(rec);
   }
   
   timer() {
