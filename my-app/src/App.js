@@ -62,6 +62,7 @@ class App extends Component {
     this.record = this.record.bind(this);
     this.stopRecord = this.stopRecord.bind(this);
     this.exportWav = this.exportWav.bind(this);
+    this.handleKeyPress = this.handleKeyPress.bind(this);
   }
 	
   componentDidMount() {
@@ -95,6 +96,22 @@ class App extends Component {
     
     this.setState({ data: data });
     console.log(data.tracks);
+  }
+  
+  handleKeyPress(e) {
+    e = e || window.event;
+    console.log(e);
+    let data = this.state.data;
+    if(e.keyCode === 67) {
+      console.log(e.keyCode);
+      data.tracks.forEach(function(track, row) {
+        track.steps.forEach(function(on, column) {
+            track.steps[column] = false;    
+        });
+      });
+    }
+    this.setState({data: data});
+    this.drawTracks();
   }
   
   drawTracks() {
