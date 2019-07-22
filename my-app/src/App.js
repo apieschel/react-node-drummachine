@@ -48,7 +48,6 @@ class App extends Component {
       play: false,
 	    loop: false,
       playing: false,
-      step: 0,
       bpm: 100,
       beatsPerMeasure: 4,
       intervalId: 0,
@@ -188,6 +187,58 @@ class App extends Component {
     
     this.setState({rec: rec});
   }
+  
+  getMIDIMessage(message) {
+    const command = message.data[0];
+    const note = message.data[1];
+    const velocity = (message.data.length > 2) ? message.data[2] : 0; // a velocity value might not be included with a noteOff command
+    let count = this.state.currentCount;
+    let data 
+
+    switch (command) {
+      case 144: // noteOn
+        if (velocity > 0) {	
+          if(count === 16) {
+            count = 1;
+          } else {
+            count = count + 1;
+          }
+
+          data.step = (data.step + 1) % data.tracks[0].steps.length;
+
+          data.tracks
+            .filter(function(track) { return track.steps[data.step]; })
+            .forEach(function(track) {
+              let clone = track.playSound.cloneNode(true);
+              let buffer;
+
+              const request = new XMLHttpRequest();
+              request.open('GET', track.playSound.src, true);
+              request.responseType = 'arraybuffer';
+              request.onload = function() {
+                ac.decodeAudioData(request.response, function(buffer) {
+                  buffer = buffer;
+
+                  const gain = ac.createGain();
+                  const playSound = ac.createBufferSource();
+                  playSound.buffer = buffer;
+                  playSound.connect(gain);
+                  gain.connect(recorderNode);
+                  gain.connect(ac.destination);
+                  playSound.start(0);
+
+                  clone.remove();
+                });     
+              }
+
+              request.send();
+            });
+      } 
+      break;
+    case 128:
+      break;
+  }
+}
   
   timer() {
     let data = this.state.data;
