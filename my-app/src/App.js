@@ -64,13 +64,15 @@ class App extends Component {
     this.exportWav = this.exportWav.bind(this);
     this.handleKeyPress = this.handleKeyPress.bind(this);
     this.update = this.update.bind(this);
-    this.onMIDISuccess = this.onMIDISuccess(this);
-    this.getMIDIMessage = this.getMIDIMessage(this);
-    this.onMIDIFailure = this.onMIDIFailure(this);
+    this.onMIDISuccess = this.onMIDISuccess.bind(this);
+    this.getMIDIMessage = this.getMIDIMessage.bind(this);
+    this.onMIDIFailure = this.onMIDIFailure.bind(this);
+    this.handleMidi = this.handleMidi.bind(this);
   }
 	
   componentDidMount() {
     document.addEventListener('keydown', this.handleKeyPress);
+    document.getElementById("midi").addEventListener("click", this.handleMidi);
     
     const rec = new Recorder(this.state.recorderNode, [{workerPath: 'js/recorderjs/recorderWorker.js'}]);
     const intervalId = setInterval(this.timer, 120);
@@ -122,6 +124,18 @@ class App extends Component {
       });
     }
     this.setState({data: data});
+  }
+  
+  handleMidi() {
+    let midi = !this.state.midi; 
+    clearInterval(this.state.intervalId);
+    this.setState({currentCount: 0});
+    if(this.state.midi) {
+      document.getElementById("midi").innerHTML = "MIDI ON";
+    }
+    this.setState({midi: midi});
+    this.update();
+    
   }
   
   drawTracks() {
@@ -195,7 +209,6 @@ class App extends Component {
   
   getMIDIMessage(message) {
     const command = message.data[0];
-    const note = message.data[1];
     const velocity = (message.data.length > 2) ? message.data[2] : 0; // a velocity value might not be included with a noteOff command
     
     let count = this.state.currentCount;
@@ -218,7 +231,6 @@ class App extends Component {
             .filter(function(track) { return track.steps[data.step]; })
             .forEach(function(track) {
               let clone = track.playSound.cloneNode(true);
-              let buffer;
 
               const request = new XMLHttpRequest();
               request.open('GET', track.playSound.src, true);
@@ -285,15 +297,12 @@ class App extends Component {
     .filter(function(track) { return track.steps[data.step]; })
     .forEach(function(track) {
       let clone = track.playSound.cloneNode(true);
-      let buffer;
       
       const request = new XMLHttpRequest();
       request.open('GET', track.playSound.src, true);
       request.responseType = 'arraybuffer';
       request.onload = function() {
-        state.ac.decodeAudioData(request.response, function(buffer) {
-          buffer = buffer;
-        
+        state.ac.decodeAudioData(request.response, function(buffer) {        
           const gain = state.ac.createGain();
           const playSound = state.ac.createBufferSource();
           playSound.buffer = buffer;
