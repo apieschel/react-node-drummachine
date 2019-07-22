@@ -237,8 +237,6 @@ class App extends Component {
               request.responseType = 'arraybuffer';
               request.onload = function() {
                 ac.decodeAudioData(request.response, function(buffer) {
-                  buffer = buffer;
-
                   const gain = ac.createGain();
                   const playSound = ac.createBufferSource();
                   playSound.buffer = buffer;
@@ -257,12 +255,13 @@ class App extends Component {
         break;
       case 128:
         break;
+      default: 
+        break;
     }
   }
   
   onMIDISuccess(midiAccess, midiOptions) {
     const inputs = midiAccess.inputs;
-    const outputs = midiAccess.outputs;
 
     for (let input of inputs.values()) {
         input.onmidimessage = this.getMIDIMessage;
