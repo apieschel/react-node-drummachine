@@ -51,7 +51,8 @@ class App extends Component {
       bpm: 100,
       beatsPerMeasure: 4,
       intervalId: 0,
-      currentCount: 10
+      currentCount: 0,
+      midi: false
     }
     
 	  this.handleClick = this.handleClick.bind(this);
@@ -62,6 +63,10 @@ class App extends Component {
     this.stopRecord = this.stopRecord.bind(this);
     this.exportWav = this.exportWav.bind(this);
     this.handleKeyPress = this.handleKeyPress.bind(this);
+    this.update = this.update.bind(this);
+    this.onMIDISuccess = this.onMIDISuccess(this);
+    this.getMIDIMessage = this.getMIDIMessage(this);
+    this.onMIDIFailure = this.onMIDIFailure(this);
   }
 	
   componentDidMount() {
@@ -192,8 +197,11 @@ class App extends Component {
     const command = message.data[0];
     const note = message.data[1];
     const velocity = (message.data.length > 2) ? message.data[2] : 0; // a velocity value might not be included with a noteOff command
+    
     let count = this.state.currentCount;
-    let data 
+    let data = this.state.data;
+    let ac = this.state.ac;
+    let recorderNode = this.state.recorderNode;
 
     switch (command) {
       case 144: // noteOn
@@ -234,11 +242,33 @@ class App extends Component {
               request.send();
             });
       } 
-      break;
-    case 128:
-      break;
+        break;
+      case 128:
+        break;
+    }
   }
-}
+  
+  onMIDISuccess(midiAccess, midiOptions) {
+    const inputs = midiAccess.inputs;
+    const outputs = midiAccess.outputs;
+
+    for (let input of inputs.values()) {
+        input.onmidimessage = this.getMIDIMessage;
+    }
+  }
+  
+  onMIDIFailure() {
+    console.log('Could not access your MIDI devices.');
+  }
+  
+  update() {
+    if(this.state.midi === false) {
+      window.location.reload();
+    } else {
+      navigator.requestMIDIAccess()
+      .then(this.onMIDISuccess, this.onMIDIFailure);
+    }
+  }
   
   timer() {
     let data = this.state.data;
