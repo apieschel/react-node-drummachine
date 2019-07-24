@@ -87,7 +87,8 @@ class App extends Component {
     http.send();
     http.onreadystatechange = function() {
       if(this.readyState == 4) {
-        console.log(this)  
+        console.log(this);
+        console.log(this.response)  
       }
     };
   }
