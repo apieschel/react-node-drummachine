@@ -79,6 +79,17 @@ class App extends Component {
     
     // store intervalId in the state so it can be accessed later:
     this.setState({intervalId: intervalId, rec: rec});
+    
+    // Load from Music directory
+    const http = new XMLHttpRequest();
+    const url='/music';
+    http.open("GET", url);
+    http.send();
+    http.onreadystatechange = function() {
+      if(this.readyState == 4) {
+        console.log(this)  
+      }
+    };
   }
 	
   componentWillUnmount() {
