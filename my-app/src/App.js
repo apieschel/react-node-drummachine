@@ -82,7 +82,7 @@ class App extends Component {
     this.setState({intervalId: intervalId, rec: rec});
     
     // Load from Music directory
-    Client.search();
+    //Client.search();
   }
 	
   componentWillUnmount() {
