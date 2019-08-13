@@ -1,6 +1,3 @@
-// Sources 
-// https://www.codeproject.com/Articles/1202580/Build-a-Metronome-in-React
-
 import React, { Component } from 'react';
 import './App.css';
 import Recorder from './recorder.js';
@@ -140,7 +137,10 @@ class App extends Component {
       document.getElementById("midi").innerHTML = "MIDI ON";
     }
     this.setState({midi: midi});
-    this.update();
+    this.update(); 
+  }
+  
+  handleFiles() {
     
   }
   
@@ -330,7 +330,7 @@ class App extends Component {
         
         <div className="flex-container outer">
           <div className="view">    
-            <form encType="multipart/form-data" method="POST" action="/api/fileanalyse" id="upload">
+            <form encType="multipart/form-data" method="POST" action={this.handleFiles} id="upload">
               <div className="flex-container">
                 <input id="inputfield" type="file" className="upfile" multiple required></input>
                 <input id="button" type="submit" value="UPLOAD"></input>
