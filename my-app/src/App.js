@@ -82,11 +82,11 @@ class App extends Component {
     
     // Load from Music directory
     const http = new XMLHttpRequest();
-    const url='/music';
+    const url='localhost:3001/music';
     http.open("GET", url);
     http.send();
     http.onreadystatechange = function() {
-      if(this.readyState == 4) {
+      if(this.readyState === 4) {
         console.log(this);
         console.log(this.response)  
       }
