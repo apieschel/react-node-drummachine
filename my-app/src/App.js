@@ -66,6 +66,7 @@ class App extends Component {
     this.getMIDIMessage = this.getMIDIMessage.bind(this);
     this.onMIDIFailure = this.onMIDIFailure.bind(this);
     this.handleMidi = this.handleMidi.bind(this);
+    this.handleFiles = this.handleFiles.bind(this);
   }
 	
   componentDidMount() {
@@ -141,7 +142,7 @@ class App extends Component {
   }
   
   handleFiles() {
-    
+    Client.postData('');
   }
   
   drawTracks() {

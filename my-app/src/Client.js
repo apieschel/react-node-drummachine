@@ -31,7 +31,7 @@ postData('/api/fileanalyse', {answer: 42})
 
 function postData(url, data = {}) {
   // Default options are marked with *
-    return fetch(url, {
+    return fetch('/api/fileanalyse', {
         method: 'POST', // *GET, POST, PUT, DELETE, etc.
         encType: 'multipart/form-data',
         mode: 'cors', // no-cors, cors, *same-origin
