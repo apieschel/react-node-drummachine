@@ -1,5 +1,5 @@
 /* eslint-disable no-undef */
-function search(query, cb) {
+function retrieve(query, cb) {
   return fetch(`/music`, {
     accept: "application/json"
   })
