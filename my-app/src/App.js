@@ -4,6 +4,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import Recorder from './recorder.js';
+import Client from "./Client";
 
 class App extends Component {
     constructor(props) {
@@ -81,16 +82,7 @@ class App extends Component {
     this.setState({intervalId: intervalId, rec: rec});
     
     // Load from Music directory
-    const http = new XMLHttpRequest();
-    const url='localhost:3001/music';
-    http.open("GET", url);
-    http.send();
-    http.onreadystatechange = function() {
-      if(this.readyState === 4) {
-        console.log(this);
-        console.log(this.response)  
-      }
-    };
+    Client.search();
   }
 	
   componentWillUnmount() {
