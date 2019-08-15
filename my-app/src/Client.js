@@ -43,6 +43,7 @@ function postData(url, data) {
   
   console.log(data);
   console.log(formData);
+  console.log(formData.get('files'))
   
   // Default options are marked with *
     return fetch(url, {

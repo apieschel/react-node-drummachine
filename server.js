@@ -119,6 +119,8 @@ app.post('/api/fileanalyse', upload.array('upfile', 20), function (req, res, nex
   console.log("Testing the API.");
   console.log(req.headers);
   console.log(req.files);
+  console.log(req.file);
+  console.log(req.body);
   res.redirect('/');
 });
 
