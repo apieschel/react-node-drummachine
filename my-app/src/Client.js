@@ -22,16 +22,14 @@ function checkStatus(response) {
 }
 
 function parseJSON(response) {
+  console.log(response);
   return response.json();
 }
 
 /* ========= POST ======== */
-postData('/api/fileanalyse', {answer: 42})
- 
-
-function postData(url, data = {}, cb) {
+function postData(url, data = {'hello': 'world'}) {
   // Default options are marked with *
-    return fetch('/api/fileanalyse', {
+    return fetch(`/api/fileanalyse`, {
         method: 'POST', // *GET, POST, PUT, DELETE, etc.
         encType: 'multipart/form-data',
         mode: 'cors', // no-cors, cors, *same-origin
@@ -41,13 +39,12 @@ function postData(url, data = {}, cb) {
             'Content-Type': 'application/json',
             // 'Content-Type': 'application/x-www-form-urlencoded',
         },
-        redirect: 'follow', // manual, *follow, error
+        redirect: 'manual', // manual, *follow, error
         referrer: 'no-referrer', // no-referrer, *client
         body: JSON.stringify(data), // body data type must match "Content-Type" header
     })
     .then(checkStatus)
     .then(parseJSON)
-    .then(cb);
 }
 
 const Client = { retrieve, postData };

@@ -142,9 +142,7 @@ class App extends Component {
   }
   
   handleFiles(e) {
-    Client.postData('', {}, function(data) {
-      console.log(data);
-    });
+    Client.postData('', {});
     e.preventDefault();
   }
   
