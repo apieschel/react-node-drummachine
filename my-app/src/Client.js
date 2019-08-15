@@ -22,8 +22,6 @@ function loadData(url, cb) {
 }
 
 function checkStatus(response) {
-  console.log(response);
-  alert(response);
   if (response.status >= 200 && response.status < 300) {
     return response;
   }
@@ -41,8 +39,13 @@ function parseJSON(response) {
 
 /* ========= POST ======== */
 function postData(url, data) {
-  formData = new FormData();
+  const formData = new FormData();
   formData.append("data", data);
+  console.log(data);
+  console.log(formData);
+  data.forEach({
+    
+  })
   
   // Default options are marked with *
     return fetch(url, {

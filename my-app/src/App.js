@@ -85,7 +85,6 @@ class App extends Component {
     
     // Load from Music directory
     Client.retrieve('/music', function(data) {
-      console.log(data);
       
       if(data.files[0]) {
         let select = document.createElement("select");
@@ -165,18 +164,20 @@ class App extends Component {
   }
   
   handleFiles(e) {
-    console.log(this.state.files);
-    Client.postData('/api/fileanalyse', this.state.files);
     e.preventDefault();
+    Client.postData('/api/fileanalyse', this.state.files);
   }
   
   handleDelete() {
     Client.deleteData();
   }
   
-  loadFiles(e) {
-    Client.loadData('/music/directory', function(data) {  
-      e.preventDefault();
+  loadFiles(e) {    
+    e.preventDefault();
+    
+    Client.loadData('/music/directory', function(data) {
+      const files = data.files;
+      console.log(files);
     });
   }
   
