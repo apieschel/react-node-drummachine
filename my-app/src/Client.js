@@ -1,5 +1,4 @@
 /* eslint-disable no-undef */
-const FormData = require('form-data');
 
 /* ======== GET ====== */
 function retrieve(url, cb) {
@@ -32,30 +31,16 @@ function checkStatus(response) {
 }
 
 function parseJSON(response) {
-  console.log(response);
   return response.json();
 }
 
 /* ========= POST ======== */
 function postData(url, data) {
-  const formData = new FormData();
-  formData.append("upfile", data);
-  
-  console.log(data);
-  console.log(formData);
-  console.log(formData.get('upfile'))
-  
-  // Default options are marked with *
-    return fetch(url, {
-        method: 'POST', // *GET, POST, PUT, DELETE, etc.
-        mode: 'cors', // no-cors, cors, *same-origin
-        cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
-        credentials: 'same-origin', // include, *same-origin, omit
-        redirect: 'follow', // manual, *follow, error
-        referrer: 'no-referrer', // no-referrer, *client
-        body: formData, // body data type must match "Content-Type" header
-    })
-    .then(checkStatus)
+  return fetch(url, {
+      method: 'POST'
+  })
+  .then(checkStatus)
+  .then(alert("Your files have been uploaded."))
 }
 
 /* ========= DELETE ======== */

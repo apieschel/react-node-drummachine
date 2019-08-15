@@ -165,7 +165,6 @@ class App extends Component {
   
   handleFiles(e) {
     Client.postData('/api/fileanalyse', this.state.files);
-    e.preventDefault();
   }
   
   handleDelete() {
