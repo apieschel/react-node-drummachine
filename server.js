@@ -113,6 +113,7 @@ app.get('/music/directory', function(req,res){
 });
 
 app.post('/api/fileanalyse', upload.array('upfile', 20), function (req, res, next) {
+  console.log("Testing the API.");
   res.redirect('/');
 });
 

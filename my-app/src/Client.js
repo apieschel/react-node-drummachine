@@ -14,6 +14,7 @@ function checkStatus(response) {
   if (response.status >= 200 && response.status < 300) {
     return response;
   }
+  console.log(response);
   const error = new Error(`HTTP Error ${response.statusText}`);
   error.status = response.statusText;
   error.response = response;
@@ -39,7 +40,7 @@ function postData(url, data = {'hello': 'world'}) {
             'Content-Type': 'application/json',
             // 'Content-Type': 'application/x-www-form-urlencoded',
         },
-        redirect: 'manual', // manual, *follow, error
+        redirect: 'follow', // manual, *follow, error
         referrer: 'no-referrer', // no-referrer, *client
         body: JSON.stringify(data), // body data type must match "Content-Type" header
     })
