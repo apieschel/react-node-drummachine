@@ -174,9 +174,9 @@ class App extends Component {
     Client.deleteData();
   }
   
-  loadFiles() {
-    Client.loadData('/music/directory', function(data) {
-      
+  loadFiles(e) {
+    Client.loadData('/music/directory', function(data) {  
+      e.preventDefault();
     });
   }
   
@@ -372,7 +372,7 @@ class App extends Component {
                 <input id="button" type="submit" value="UPLOAD"></input>
               </div>
             </form>
-            <form method="GET" action="/music/directory" id="currentFiles" className="hidden" OnSubmit={this.loadFiles}>
+            <form method="GET" action="/music/directory" id="currentFiles" className="hidden" onSubmit={this.loadFiles}>
               <div className="flex-container" id="wavContainer">
                 <input id="getFiles" type="submit" value="LOAD .WAV FILES"></input>
               </div>

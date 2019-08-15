@@ -12,11 +12,21 @@ function retrieve(url, cb) {
     .then(cb);
 }
 
+function loadData(url, cb) {
+  return fetch(url, {
+    accept: "application/json"
+  })
+    .then(checkStatus)
+    .then(parseJSON)
+    .then(cb);
+}
+
 function checkStatus(response) {
+  console.log(response);
+  alert(response);
   if (response.status >= 200 && response.status < 300) {
     return response;
   }
-  console.log(response);
   const error = new Error(`HTTP Error ${response.statusText}`);
   error.status = response.statusText;
   error.response = response;
@@ -62,7 +72,5 @@ function deleteData() {
     .then(alert("All files deleted from the music directory."));
 }
 
-const inputs = querySelector('#currentFiles :input');
-
-const Client = { retrieve, postData, deleteData };
+const Client = { retrieve, loadData, postData, deleteData };
 export default Client;
