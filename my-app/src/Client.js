@@ -1,5 +1,7 @@
 /* eslint-disable no-undef */
 
+const FormData = require('form-data');
+
 /* ======== GET ====== */
 function retrieve(query, cb) {
   return fetch(`/music`, {
@@ -29,8 +31,8 @@ function parseJSON(response) {
 
 /* ========= POST ======== */
 function postData(url, data) {
-  //formData = new FormData();
-  //formData.append("data", data);
+  formData = new FormData();
+  formData.append("data", data);
   
   // Default options are marked with *
     return fetch(`/api/fileanalyse`, {
@@ -38,13 +40,28 @@ function postData(url, data) {
         mode: 'cors', // no-cors, cors, *same-origin
         cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
         credentials: 'same-origin', // include, *same-origin, omit
+        headers: {
+            'Content-Type': 'multipart/form-data',
+            // 'Content-Type': 'application/x-www-form-urlencoded',
+        },
         redirect: 'follow', // manual, *follow, error
         referrer: 'no-referrer', // no-referrer, *client
-        body: data, // body data type must match "Content-Type" header
+        body: formData, // body data type must match "Content-Type" header
     })
     .then(checkStatus)
     .then(parseJSON)
 }
 
-const Client = { retrieve, postData };
+/* ========= POST ======== */
+function deleteData(url, data) {
+  
+  // Default options are marked with *
+    return fetch(`/music/delete`, {
+        method: 'DELETE'
+    })
+    .then(checkStatus)
+    .then(parseJSON)
+}
+
+const Client = { retrieve, postData, deleteData };
 export default Client;

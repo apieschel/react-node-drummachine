@@ -84,6 +84,21 @@ class App extends Component {
     // Load from Music directory
     Client.retrieve('', function(data) {
       console.log(data);
+      
+      if(data.files[0]) {
+        let select = document.createElement("select");
+        select.required = "true";
+        select.name = "directory";
+        for(let i = 0; i < data.files[0].length; i++) {
+          let option = document.createElement("option");
+          option.value = data.files[0][i];
+          option.innerText = data.files[0][i];
+          select.append(option);
+        }
+        document.querySelector("#wavContainer").append(select);
+        document.querySelector("#currentFiles").className = "";
+        document.querySelector("#clearDirectory").className = "";
+      }
     });
   }
 	
@@ -151,6 +166,11 @@ class App extends Component {
     console.log(this.state.files);
     Client.postData('', this.state.files);
     e.preventDefault();
+  }
+  
+  handleDelete() {
+    console.log(this.state.files);
+    Client.postData('', this.state.files);
   }
   
   drawTracks() {
@@ -350,7 +370,7 @@ class App extends Component {
                 <input id="getFiles" type="submit" value="LOAD .WAV FILES"></input>
               </div>
             </form>
-            <form action="/music/delete" id="clearDirectory" className="hidden">
+            <form action="/music/delete" id="clearDirectory" className="hidden" onSubmit={this.handleDelete}>
               <div className="flex-container">
                 <input type="submit" value="CLEAR DIRECTORY" id="clear"></input>
               </div>
