@@ -1,5 +1,4 @@
 /* eslint-disable no-undef */
-
 const FormData = require('form-data');
 
 /* ======== GET ====== */
@@ -40,12 +39,10 @@ function parseJSON(response) {
 /* ========= POST ======== */
 function postData(url, data) {
   const formData = new FormData();
-  formData.append("data", data);
+  formData.append("files", data);
+  
   console.log(data);
   console.log(formData);
-  data.forEach({
-    
-  })
   
   // Default options are marked with *
     return fetch(url, {
@@ -53,10 +50,6 @@ function postData(url, data) {
         mode: 'cors', // no-cors, cors, *same-origin
         cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
         credentials: 'same-origin', // include, *same-origin, omit
-        headers: {
-            'Content-Type': 'multipart/form-data',
-            // 'Content-Type': 'application/x-www-form-urlencoded',
-        },
         redirect: 'follow', // manual, *follow, error
         referrer: 'no-referrer', // no-referrer, *client
         body: formData, // body data type must match "Content-Type" header
