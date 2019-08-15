@@ -341,7 +341,7 @@ class App extends Component {
           <div className="view">    
             <form encType="multipart/form-data" method="POST" action="/api/fileanalyse" onSubmit={this.handleFiles} id="upload">
               <div className="flex-container">
-                <input id="inputfield" type="file" className="upfile" value={this.state.files} onChange={this.handleChange} multiple required></input>
+                <input id="inputfield" type="file" name="upfile" onChange={this.handleChange} multiple required></input>
                 <input id="button" type="submit" value="UPLOAD"></input>
               </div>
             </form>

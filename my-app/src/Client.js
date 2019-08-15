@@ -30,6 +30,11 @@ function parseJSON(response) {
 /* ========= POST ======== */
 function postData(url, data) {
   console.log(data);
+  const formData  = new FormData();
+  
+  for(var name in data) {
+    formData.append(name, data[name]);
+  }
   // Default options are marked with *
     return fetch(`/api/fileanalyse`, {
         method: 'POST', // *GET, POST, PUT, DELETE, etc.
