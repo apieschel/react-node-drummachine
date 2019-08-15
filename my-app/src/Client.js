@@ -39,11 +39,11 @@ function parseJSON(response) {
 /* ========= POST ======== */
 function postData(url, data) {
   const formData = new FormData();
-  formData.append("files", data);
+  formData.append("upfile", data);
   
   console.log(data);
   console.log(formData);
-  console.log(formData.get('files'))
+  console.log(formData.get('upfile'))
   
   // Default options are marked with *
     return fetch(url, {
