@@ -62,5 +62,7 @@ function deleteData() {
     .then(alert("All files deleted from the music directory."));
 }
 
+const inputs = querySelector('#currentFiles :input');
+
 const Client = { retrieve, postData, deleteData };
 export default Client;

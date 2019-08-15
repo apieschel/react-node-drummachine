@@ -70,7 +70,7 @@ class App extends Component {
     this.handleFiles = this.handleFiles.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.handleDelete = this.handleDelete.bind(this);
-    this.loadfiles 
+    this.loadFiles = this.loadFiles.bind(this);
   }
 	
   componentDidMount() {
@@ -174,7 +174,7 @@ class App extends Component {
     Client.deleteData();
   }
   
-  LoadFiles() {
+  loadFiles() {
     Client.loadData('/music/directory', function(data) {
       
     });
