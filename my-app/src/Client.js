@@ -28,7 +28,8 @@ function parseJSON(response) {
 }
 
 /* ========= POST ======== */
-function postData(url, data = {'hello': 'world'}) {
+function postData(url, data) {
+  console.log(data);
   // Default options are marked with *
     return fetch(`/api/fileanalyse`, {
         method: 'POST', // *GET, POST, PUT, DELETE, etc.
