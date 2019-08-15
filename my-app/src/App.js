@@ -144,7 +144,7 @@ class App extends Component {
   }
   
   handleChange(e) {
-    this.setState({files: e.target.value});
+    this.setState({files: e.target.files});
   }
   
   handleFiles(e) {
