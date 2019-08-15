@@ -70,6 +70,7 @@ class App extends Component {
     this.handleFiles = this.handleFiles.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.handleDelete = this.handleDelete.bind(this);
+    this.loadfiles 
   }
 	
   componentDidMount() {
@@ -83,7 +84,7 @@ class App extends Component {
     this.setState({intervalId: intervalId, rec: rec});
     
     // Load from Music directory
-    Client.retrieve('', function(data) {
+    Client.retrieve('/music', function(data) {
       console.log(data);
       
       if(data.files[0]) {
@@ -165,7 +166,7 @@ class App extends Component {
   
   handleFiles(e) {
     console.log(this.state.files);
-    Client.postData('', this.state.files);
+    Client.postData('/api/fileanalyse', this.state.files);
     e.preventDefault();
   }
   
@@ -174,7 +175,9 @@ class App extends Component {
   }
   
   LoadFiles() {
-    Client.loadData('/music/directory');
+    Client.loadData('/music/directory', function(data) {
+      
+    });
   }
   
   drawTracks() {

@@ -3,8 +3,8 @@
 const FormData = require('form-data');
 
 /* ======== GET ====== */
-function retrieve(query, cb) {
-  return fetch(`/music`, {
+function retrieve(url, cb) {
+  return fetch(url, {
     accept: "application/json"
   })
     .then(checkStatus)
@@ -35,7 +35,7 @@ function postData(url, data) {
   formData.append("data", data);
   
   // Default options are marked with *
-    return fetch(`/api/fileanalyse`, {
+    return fetch(url, {
         method: 'POST', // *GET, POST, PUT, DELETE, etc.
         mode: 'cors', // no-cors, cors, *same-origin
         cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
