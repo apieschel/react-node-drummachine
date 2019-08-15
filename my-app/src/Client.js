@@ -49,18 +49,17 @@ function postData(url, data) {
         body: formData, // body data type must match "Content-Type" header
     })
     .then(checkStatus)
-    .then(parseJSON)
 }
 
-/* ========= POST ======== */
-function deleteData(url, data) {
+/* ========= DELETE ======== */
+function deleteData() {
   
   // Default options are marked with *
     return fetch(`/music/delete`, {
         method: 'DELETE'
     })
     .then(checkStatus)
-    .then(parseJSON)
+    .then(alert("All files deleted from the music directory."));
 }
 
 const Client = { retrieve, postData, deleteData };

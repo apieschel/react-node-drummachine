@@ -69,6 +69,7 @@ class App extends Component {
     this.handleMidi = this.handleMidi.bind(this);
     this.handleFiles = this.handleFiles.bind(this);
     this.handleChange = this.handleChange.bind(this);
+    this.handleDelete = this.handleDelete.bind(this);
   }
 	
   componentDidMount() {
@@ -169,8 +170,11 @@ class App extends Component {
   }
   
   handleDelete() {
-    console.log(this.state.files);
-    Client.postData('', this.state.files);
+    Client.deleteData();
+  }
+  
+  LoadFiles() {
+    Client.loadData('/music/directory');
   }
   
   drawTracks() {
@@ -365,7 +369,7 @@ class App extends Component {
                 <input id="button" type="submit" value="UPLOAD"></input>
               </div>
             </form>
-            <form method="GET" action="/music/directory" id="currentFiles" className="hidden">
+            <form method="GET" action="/music/directory" id="currentFiles" className="hidden" OnSubmit={this.loadFiles}>
               <div className="flex-container" id="wavContainer">
                 <input id="getFiles" type="submit" value="LOAD .WAV FILES"></input>
               </div>
