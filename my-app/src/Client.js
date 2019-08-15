@@ -40,7 +40,7 @@ function postData(url, data) {
       method: 'POST'
   })
   .then(checkStatus)
-  .then(alert("Your files have been uploaded."))
+  .then(alert("Your files have been uploaded. Click OK to refresh."))
 }
 
 /* ========= DELETE ======== */
@@ -51,7 +51,7 @@ function deleteData() {
         method: 'DELETE'
     })
     .then(checkStatus)
-    .then(alert("All files deleted from the music directory."));
+    .then(alert("All files deleted from the music directory. Click OK to refresh."));
 }
 
 const Client = { retrieve, loadData, postData, deleteData };
