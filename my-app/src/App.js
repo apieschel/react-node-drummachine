@@ -50,7 +50,8 @@ class App extends Component {
       beatsPerMeasure: 4,
       intervalId: 0,
       currentCount: 0,
-      midi: false
+      midi: false,
+      files: ''
     }
     
 	  this.handleClick = this.handleClick.bind(this);
@@ -67,6 +68,7 @@ class App extends Component {
     this.onMIDIFailure = this.onMIDIFailure.bind(this);
     this.handleMidi = this.handleMidi.bind(this);
     this.handleFiles = this.handleFiles.bind(this);
+    this.handleChange = this.handleChange.bind(this);
   }
 	
   componentDidMount() {
@@ -141,8 +143,13 @@ class App extends Component {
     this.update(); 
   }
   
+  handleChange(e) {
+    this.setState({files: e.target.value});
+  }
+  
   handleFiles(e) {
-    Client.postData('', {});
+    console.log(this.state.files);
+    Client.postData('', this.state.files);
     e.preventDefault();
   }
   
@@ -334,7 +341,7 @@ class App extends Component {
           <div className="view">    
             <form encType="multipart/form-data" method="POST" action="/api/fileanalyse" onSubmit={this.handleFiles} id="upload">
               <div className="flex-container">
-                <input id="inputfield" type="file" className="upfile" multiple required></input>
+                <input id="inputfield" type="file" className="upfile" value={this.state.files} onChange={this.handleChange} multiple required></input>
                 <input id="button" type="submit" value="UPLOAD"></input>
               </div>
             </form>
