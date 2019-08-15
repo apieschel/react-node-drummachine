@@ -29,7 +29,7 @@ function parseJSON(response) {
 postData('/api/fileanalyse', {answer: 42})
  
 
-function postData(url, data = {}) {
+function postData(url, data = {}, cb) {
   // Default options are marked with *
     return fetch('/api/fileanalyse', {
         method: 'POST', // *GET, POST, PUT, DELETE, etc.
@@ -46,7 +46,8 @@ function postData(url, data = {}) {
         body: JSON.stringify(data), // body data type must match "Content-Type" header
     })
     .then(checkStatus)
-    .then(parseJSON);
+    .then(parseJSON)
+    .then(cb);
 }
 
 const Client = { retrieve, postData };
