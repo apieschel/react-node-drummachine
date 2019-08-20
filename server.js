@@ -95,6 +95,10 @@ app.get('/music', function(req,res){
    });
 });
 
+app.get('/api/audiosrc', function(req,res){
+  res.json("Hello, world.");
+});
+        
 app.get('/music/directory', function(req,res){
    logs = [];
    console.log('Testing the API.');
