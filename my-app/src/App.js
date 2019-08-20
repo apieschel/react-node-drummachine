@@ -175,6 +175,7 @@ class App extends Component {
   loadFiles(e) {    
     e.preventDefault();
     const self = this;
+    const api = Client;
     
     Client.loadData(e.target[1].value, function(data) {
       const files = data.files[0];
@@ -183,15 +184,21 @@ class App extends Component {
       
       clearInterval(self.state.intervalId);
       for(let i = 0; i < files.length; i++) {
-        console.log(i);
+        
         let audioSrc = "/public/music/" + data.directory + "/" + files[i];
+        
+        api.loadAudio('/public/music', function(data) {
+          console.log(data);
+        });
+        
+        /*
         let track = {};
         track.steps = [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false];
         track.playSound = new Audio(audioSrc);
         track.name = files[i];
-        tracks.push(track);
+        tracks.push(track); */
       }
-      console.log(tracks);
+      // console.log(tracks);
     });
   }
   

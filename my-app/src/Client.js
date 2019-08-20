@@ -22,8 +22,11 @@ function loadData(query, cb) {
     .then(cb);
 }
 
-function audioSrc(url) {
-  return fetch(url).then(checkStatus).then(parseJSON);
+function loadAudio(url, cb) {
+  return fetch(url)
+    .then(checkStatus)
+    .then(parseJSON)
+    .then(cb);
 }
 
 function checkStatus(response) {
@@ -61,5 +64,5 @@ function deleteData() {
     .then(alert("All files deleted from the music directory. Click OK to refresh."));
 }
 
-const Client = { retrieve, loadData, postData, deleteData };
+const Client = { retrieve, loadData, postData, deleteData, loadAudio };
 export default Client;
