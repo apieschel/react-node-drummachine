@@ -176,7 +176,7 @@ class App extends Component {
     
     Client.loadData('/music/directory', function(data) {
       const files = data.files;
-      console.log(files);
+      console.log(data);
     });
   }
   
