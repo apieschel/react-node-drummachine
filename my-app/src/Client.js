@@ -14,7 +14,7 @@ function retrieve(url, cb) {
 }
 
 function loadData(query, cb) {
-  return fetch(`music/directory?q=${query}`, {
+  return fetch(`music/directory?directory=${query}`, {
     accept: "application/json"
   })
     .then(checkStatus)

@@ -174,11 +174,13 @@ class App extends Component {
   
   loadFiles(e) {    
     e.preventDefault();
-    console.log(e);
     
-    Client.loadData('', function(data) {
+    Client.loadData(e.target[1].value, function(data) {
       const files = data.files;
-      console.log(data);
+      const tracks = [];
+      console.log(files);
+      
+      clearInterval(this.state.intervalId);
     });
   }
   
