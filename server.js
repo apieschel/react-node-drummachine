@@ -79,6 +79,7 @@ function readDirectory(callback){
 }
 
 app.get('/music', function(req,res){
+  console.log("testing");
    logs = []; 
   
    let ip = req.headers['x-forwarded-for'];
@@ -89,7 +90,7 @@ app.get('/music', function(req,res){
    }
    ip = ip.split('.').join('');
   
-   path = process.cwd() + '/public/music/' + ip + '/';
+   path = process.cwd() + '/my-app/public/music/' + ip + '/';
    readDirectory(function(logFiles){
      res.json({files : logFiles});
    });
@@ -112,7 +113,7 @@ app.get('/music/directory', function(req,res){
    }
    ip = ip.split('.').join('');
   
-   path = process.cwd() + '/public/music/' + ip + '/' + req.query.directory;
+   path = process.cwd() + '/my-app/public/music/' + ip + '/' + req.query.directory;
    readDirectory(function(logFiles){
      res.json({files : logFiles, directory: ip + '/' + req.query.directory});
    });
@@ -132,7 +133,7 @@ app.delete('/music/delete', function(req, res) {
   }
   ip = ip.split('.').join('');
   
-  rimraf(process.cwd() + "/public/music/" + ip, function() {
+  rimraf(process.cwd() + "/my-app/public/music/" + ip, function() {
     res.json("Your personal directory has been deleted.");
   });
 });

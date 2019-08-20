@@ -86,6 +86,7 @@ class App extends Component {
     
     // Load from Music directory
     Client.retrieve('/music', function(data) {
+      console.log(data);
       
       if(data.files[0]) {
         let select = document.createElement("select");

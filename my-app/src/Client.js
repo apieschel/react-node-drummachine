@@ -5,11 +5,12 @@
 
 /* ======== GET ====== */
 function retrieve(url, cb) {
-  return fetch(url, {
+  console.log(url);
+  return fetch('public/music/', {
     accept: "application/json"
   })
     .then(checkStatus)
-    .then(parseJSON)
+    //.then(parseJSON)
     .then(cb);
 }
 
