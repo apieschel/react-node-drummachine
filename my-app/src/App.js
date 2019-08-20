@@ -51,7 +51,8 @@ class App extends Component {
       intervalId: 0,
       currentCount: 0,
       midi: false,
-      files: ''
+      files: '',
+      directories: []
     }
     
 	  this.handleClick = this.handleClick.bind(this);
@@ -173,8 +174,9 @@ class App extends Component {
   
   loadFiles(e) {    
     e.preventDefault();
+    console.log(e);
     
-    Client.loadData('/music/directory', function(data) {
+    Client.loadData('', function(data) {
       const files = data.files;
       console.log(data);
     });

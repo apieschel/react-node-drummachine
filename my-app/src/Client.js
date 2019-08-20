@@ -13,8 +13,8 @@ function retrieve(url, cb) {
     .then(cb);
 }
 
-function loadData(url, cb) {
-  return fetch(url, {
+function loadData(query, cb) {
+  return fetch(`music/directory?q=${query}`, {
     accept: "application/json"
   })
     .then(checkStatus)
