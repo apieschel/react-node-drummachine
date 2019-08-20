@@ -85,7 +85,7 @@ class App extends Component {
     this.setState({intervalId: intervalId, rec: rec});
     
     // Load from Music directory
-    Client.retrieve('/music', function(data) {
+    Client.retrieve('/api/music', function(data) {
       console.log(data);
       
       if(data.files[0]) {
@@ -181,13 +181,13 @@ class App extends Component {
     Client.loadData(e.target[1].value, function(data) {
       const files = data.files[0];
       const directory = data.directory;
-      const tracks = [];
+      //const tracks = [];
       console.log(files);
       
       clearInterval(self.state.intervalId);
       for(let i = 0; i < files.length; i++) {
         
-        let audioSrc = "/public/music/" + directory + "/" + files[i];
+        //let audioSrc = "/public/music/" + directory + "/" + files[i];
         
         api.loadAudio({directory: directory, file: files[i]}, function(data) {
           console.log(data);

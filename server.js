@@ -78,7 +78,7 @@ function readDirectory(callback){
   }); 
 }
 
-app.get('/music', function(req,res){
+app.get('/api/music', function(req,res){
   console.log("testing");
    logs = []; 
   
