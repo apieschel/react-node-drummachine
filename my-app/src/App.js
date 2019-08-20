@@ -177,22 +177,19 @@ class App extends Component {
     const self = this;
     
     Client.loadData(e.target[1].value, function(data) {
-      const files = data.files;
+      const files = data.files[0];
       const tracks = [];
       console.log(files);
       
       clearInterval(self.state.intervalId);
       for(let i = 0; i < files.length; i++) {
-          let audioSrc = "/public/music/" + data.directory + "/" + data.files[i];
-          let obj = {};
-        
-          tracks.push(
-            {
-              steps: [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false], 
-              playSound: new Audio(audioSrc), 
-              name: data.files[i]
-            }
-          );
+        console.log(i);
+        let audioSrc = "/public/music/" + data.directory + "/" + files[i];
+        let track = {};
+        track.steps = [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false];
+        track.playSound = new Audio(audioSrc);
+        track.name = files[i];
+        tracks.push(track);
       }
       console.log(tracks);
     });
