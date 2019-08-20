@@ -96,14 +96,13 @@ app.get('/music', function(req,res){
 });
 
 app.get('/api/audiosrc', function(req,res){
+  console.log(req.query);
   res.json("Hello, world.");
 });
         
 app.get('/music/directory', function(req,res){
    logs = [];
    console.log('Testing the API.');
-   console.log(req.headers);
-   console.log(req.body);
   
    let ip = req.headers['x-forwarded-for'];
    if(ip) {

@@ -188,7 +188,7 @@ class App extends Component {
         
         let audioSrc = "/public/music/" + directory + "/" + files[i];
         
-        api.loadAudio([directory, files[i]], function(data) {
+        api.loadAudio({directory: directory, file: files[i]}, function(data) {
           console.log(data);
         });
         

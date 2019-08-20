@@ -22,8 +22,8 @@ function loadData(query, cb) {
     .then(cb);
 }
 
-function loadAudio(url, cb) {
-  return fetch(`/api/audiosrc`, {
+function loadAudio(query, cb) {
+  return fetch(`/api/audiosrc?directory=${query.directory}&file=${query.file}`, {
     accept: "application/json"
   })
     .then(checkStatus)
