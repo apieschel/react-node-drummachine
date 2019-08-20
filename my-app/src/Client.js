@@ -1,5 +1,8 @@
 /* eslint-disable no-undef */
 
+// https://www.fullstackreact.com/articles/using-create-react-app-with-a-server/
+// https://github.com/fullstackreact/food-lookup-demo
+
 /* ======== GET ====== */
 function retrieve(url, cb) {
   return fetch(url, {
