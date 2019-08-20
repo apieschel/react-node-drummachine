@@ -6,7 +6,7 @@
 /* ======== GET ====== */
 function retrieve(url, cb) {
   console.log(url);
-  return fetch('public/music/', {
+  return fetch(`music/`, {
     accept: "application/json"
   })
     .then(checkStatus)

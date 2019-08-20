@@ -13,7 +13,7 @@ const storage = multer.diskStorage({
     }
     
     ip = ip.split('.').join('');
-    ip = process.cwd() + '/my-app/public/music/' + ip;
+    ip = process.cwd() + '/public/music/' + ip;
     
     if (!fs.existsSync(ip)) {
         fs.mkdirSync(ip);
@@ -68,7 +68,7 @@ app.use(helmet({
 
 // https://stackoverflow.com/questions/38104090/how-can-i-read-files-from-directory-and-send-as-json-to-client
 const fs = require('fs');
-let path = process.cwd() + '/my-app/public/music/';
+let path = process.cwd() + '/public/music/';
 let logs = [];
 
 function readDirectory(callback){
@@ -90,7 +90,7 @@ app.get('/music', function(req,res){
    }
    ip = ip.split('.').join('');
   
-   path = process.cwd() + '/my-app/public/music/' + ip + '/';
+   path = process.cwd() + '/public/music/' + ip + '/';
    readDirectory(function(logFiles){
      res.json({files : logFiles});
    });
@@ -113,7 +113,7 @@ app.get('/music/directory', function(req,res){
    }
    ip = ip.split('.').join('');
   
-   path = process.cwd() + '/my-app/public/music/' + ip + '/' + req.query.directory;
+   path = process.cwd() + '/public/music/' + ip + '/' + req.query.directory;
    readDirectory(function(logFiles){
      res.json({files : logFiles, directory: ip + '/' + req.query.directory});
    });
@@ -133,7 +133,7 @@ app.delete('/music/delete', function(req, res) {
   }
   ip = ip.split('.').join('');
   
-  rimraf(process.cwd() + "/my-app/public/music/" + ip, function() {
+  rimraf(process.cwd() + "/public/music/" + ip, function() {
     res.json("Your personal directory has been deleted.");
   });
 });
