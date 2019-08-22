@@ -176,12 +176,12 @@ class App extends Component {
   loadFiles(e) {    
     e.preventDefault();
     const self = this;
-    const api = Client;
-    const tracks = [];
+    let data = this.state.data;
     
     Client.loadData(e.target[1].value, function(data) {
       const files = data.files[0];
-      const directory = data.directory;
+      const directory = data.directory;   
+      const tracks = [];
       
       clearInterval(self.state.intervalId);
       for(let i = 0; i < files.length; i++) {
@@ -194,13 +194,19 @@ class App extends Component {
         track.name = files[i];
         tracks.push(track);
       }
+      
+      data.tracks = tracks;
+      self.setState({data: data, currentCount: 0});
+      console.log(tracks);
+      const intervalId = setInterval(this.timer, 120);
     });
-    console.log(tracks);
   }
   
   drawTracks() {
+    console.log("It rendered.");
     let sounds = this.state.data.tracks;
     let tracks = [];
+    console.log(sounds.length);
     for(let i = 0; i < sounds.length; i++) {
       tracks.push(
       <div key={i} className={sounds[i].name}>
