@@ -354,12 +354,15 @@ class App extends Component {
     } else {
       data.step = 0;
       this.setState({ currentCount: 0, data: data });
-      console.log(data.tracks[13].playSound.src);
     }
     
+    if(data.tracks[13]) {
+      //console.log(data.tracks[13].steps[this.state.currentCount]);
+    }
     data.tracks
     .filter(function(track) { return track.steps[data.step]; })
     .forEach(function(track) {
+      console.log(track);
       let clone = track.playSound.cloneNode(true);
       console.log(track.playSound.src);
       const request = new XMLHttpRequest();
