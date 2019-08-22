@@ -111,9 +111,10 @@ class App extends Component {
   }
   
   handleClick(e) {
-    let data = this.state.data;
-    let track = parseInt(e.target.id.substring(0,1));
-    let step = parseInt(e.target.id.substring(2,));
+    const data = this.state.data;
+    const track = parseInt(e.target.id.substring(0,1));
+    const index = e.target.id.indexOf("_");
+    const step = parseInt(e.target.id.substring(index + 1,));
     let isActive = data.tracks[track].steps[step];
     
     // toggle "play" for this step on or off
@@ -349,6 +350,7 @@ class App extends Component {
       data.step = data.step + 1;
       this.setState({ currentCount: this.state.currentCount + 1 , data: data});
     } else {
+      console.log(data);
       data.step = 0;
       this.setState({ currentCount: 0, data: data });
     }
@@ -357,7 +359,7 @@ class App extends Component {
     .filter(function(track) { return track.steps[data.step]; })
     .forEach(function(track) {
       let clone = track.playSound.cloneNode(true);
-      
+      console.log(track.playSound.src);
       const request = new XMLHttpRequest();
       request.open('GET', track.playSound.src, true);
       request.responseType = 'arraybuffer';
