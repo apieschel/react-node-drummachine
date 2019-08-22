@@ -5,7 +5,6 @@
 
 /* ======== GET ====== */
 function retrieve(url, cb) {
-  console.log(url);
   return fetch(url, {
     accept: "application/json"
   })

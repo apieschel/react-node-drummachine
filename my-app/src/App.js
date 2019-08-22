@@ -86,8 +86,6 @@ class App extends Component {
     
     // Load from Music directory
     Client.retrieve('/api/music', function(data) {
-      console.log(data);
-      
       if(data.files[0]) {
         let select = document.createElement("select");
         select.required = "true";
@@ -176,12 +174,12 @@ class App extends Component {
   loadFiles(e) {    
     e.preventDefault();
     const self = this;
-    let data = this.state.data;
     
     Client.loadData(e.target[1].value, function(data) {
       const files = data.files[0];
       const directory = data.directory;   
-      const tracks = [];
+      const tracks = [];   
+      const trackData = self.state.data;
       
       clearInterval(self.state.intervalId);
       for(let i = 0; i < files.length; i++) {
@@ -195,18 +193,15 @@ class App extends Component {
         tracks.push(track);
       }
       
-      data.tracks = tracks;
-      self.setState({data: data, currentCount: 0});
-      console.log(tracks);
-      const intervalId = setInterval(this.timer, 120);
+      trackData.tracks = tracks;
+      const intervalId = setInterval(self.timer, 120);
+      self.setState({data: trackData, currentCount: 0, intervalId: intervalId});
     });
   }
   
   drawTracks() {
-    console.log("It rendered.");
     let sounds = this.state.data.tracks;
     let tracks = [];
-    console.log(sounds.length);
     for(let i = 0; i < sounds.length; i++) {
       tracks.push(
       <div key={i} className={sounds[i].name}>
