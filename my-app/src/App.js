@@ -181,26 +181,26 @@ class App extends Component {
     Client.loadData(e.target[1].value, function(data) {
       const files = data.files[0];
       const directory = data.directory;
-      //const tracks = [];
+      const tracks = [];
       console.log(files);
       
       clearInterval(self.state.intervalId);
       for(let i = 0; i < files.length; i++) {
         
-        //let audioSrc = "/public/music/" + directory + "/" + files[i];
+        let audioSrc = "/public/music/" + directory + "/" + files[i];
         
         api.loadAudio({directory: directory, file: files[i]}, function(data) {
           console.log(data);
         });
         
-        /*
+        
         let track = {};
         track.steps = [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false];
         track.playSound = new Audio(audioSrc);
         track.name = files[i];
-        tracks.push(track); */
+        tracks.push(track);
       }
-      // console.log(tracks);
+      console.log(tracks);
     });
   }
   
