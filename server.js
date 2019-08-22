@@ -79,7 +79,6 @@ function readDirectory(callback){
 }
 
 app.get('/api/music', function(req,res){
-  console.log("testing");
    logs = []; 
   
    let ip = req.headers['x-forwarded-for'];
