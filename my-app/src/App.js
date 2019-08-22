@@ -187,7 +187,7 @@ class App extends Component {
       clearInterval(self.state.intervalId);
       for(let i = 0; i < files.length; i++) {
         
-        let audioSrc = "/public/music/" + directory + "/" + files[i];
+        let audioSrc = "public/music/" + directory + "/" + files[i];
         
         api.loadAudio({directory: directory, file: files[i]}, function(data) {
           console.log(data);
