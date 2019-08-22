@@ -97,7 +97,6 @@ app.get('/api/music', function(req,res){
         
 app.get('/music/directory', function(req,res){
    logs = [];
-   console.log('Testing the API.');
   
    let ip = req.headers['x-forwarded-for'];
    if(ip) {

@@ -43,7 +43,6 @@ function postData(url, data) {
       method: 'POST'
   })
   .then(checkStatus)
-  .then(alert("Your files have been uploaded. Click OK to refresh."))
 }
 
 /* ========= DELETE ======== */
