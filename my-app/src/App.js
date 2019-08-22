@@ -184,12 +184,14 @@ class App extends Component {
       
       clearInterval(self.state.intervalId);
       for(let i = 0; i < files.length; i++) {
-        
+        console.log(i);
+        console.log(files[i]);
         const audioSrc = process.env.PUBLIC_URL + "/music/" + directory + "/" + files[i];     
         
         const track = {};
         track.steps = [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false];
         track.playSound = new Audio(audioSrc);
+        console.log(track.playSound.src);
         track.name = files[i];
         tracks.push(track);
       }
@@ -350,9 +352,9 @@ class App extends Component {
       data.step = data.step + 1;
       this.setState({ currentCount: this.state.currentCount + 1 , data: data});
     } else {
-      console.log(data);
       data.step = 0;
       this.setState({ currentCount: 0, data: data });
+      console.log(data.tracks[13].playSound.src);
     }
     
     data.tracks
