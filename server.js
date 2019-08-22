@@ -97,7 +97,7 @@ app.get('/api/music', function(req,res){
 
 app.get('/api/audiosrc', function(req,res){
   console.log(req.query);
-  res.json(process.cwd());
+  res.json({directory: req.query.directory, file: });
 });
         
 app.get('/music/directory', function(req,res){
