@@ -23,15 +23,6 @@ function loadData(query, cb) {
     .then(cb);
 }
 
-function loadAudio(query, cb) {
-  return fetch(`/api/audiosrc?directory=${query.directory}&file=${query.file}`, {
-    accept: "application/json"
-  })
-    .then(checkStatus)
-    .then(parseJSON)
-    .then(cb);
-}
-
 function checkStatus(response) {
   if (response.status >= 200 && response.status < 300) {
     return response;
@@ -67,5 +58,5 @@ function deleteData() {
     .then(alert("All files deleted from the music directory. Click OK to refresh."));
 }
 
-const Client = { retrieve, loadData, postData, deleteData, loadAudio };
+const Client = { retrieve, loadData, postData, deleteData };
 export default Client;

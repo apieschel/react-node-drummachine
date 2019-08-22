@@ -94,11 +94,6 @@ app.get('/api/music', function(req,res){
      res.json({files : logFiles});
    });
 });
-
-app.get('/api/audiosrc', function(req,res){
-  console.log(req.query);
-  res.json({directory: req.query.directory, file: req.query.file});
-});
         
 app.get('/music/directory', function(req,res){
    logs = [];
